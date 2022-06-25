@@ -1,4 +1,6 @@
-﻿namespace CarShowroom.Models
+﻿using CarShowroom.ViewModels;
+
+namespace CarShowroom.Models
 {
     public class Application
     {
@@ -13,5 +15,13 @@
         public CarType Type { get; set; }
         public int Budget { get; set; }
         public ApplicationState State { get; set; }
+        public string Desc { get; set; }
+
+        public void Update(StatusApplicationViewModel model)
+        {
+            CarId = model.CarId;
+            State = model.State;
+            Desc = model.Desc;
+        }
     }
 }

@@ -1,0 +1,64 @@
+﻿@model StatusApplicationViewModel
+<link rel="stylesheet" href="~/css/application.css">
+
+<div class="application">
+    <div class="application__content">
+        <div class="application__content__title"><span>Перегляд заявки</span></div>
+        <div class="application__content__form">
+            <form asp-action="ViewApplication" asp-controller="Application">
+                <p>Ім'я: @Model.Name</p>
+                <p>Прізвище: @Model.Surname</p>
+                <p>Пошта: @Model.Email</p>
+                <p>Телефон: @Model.Phone</p>
+                <p>Бажаний колір автомобіля: @Model.Color</p>
+                <p>Бажаний тип автомобіля: @Model.Type</p>
+                <p>Бюджет: @Model.Budget</p>
+                <div class="application__form__item">
+                    <span>Статус заявки</span>
+                    <select asp-for="State" asp-items='Html.GetEnumSelectList<ApplicationState>()'></select>
+                    <span>Error</span>
+                </div>
+                <div class="application__form__item">
+                    <span>Коментар</span>
+                    <textarea asp-for="Desc" cols="30" rows="10"></textarea>
+                    <span>Error</span>
+                </div>
+                <div class="application__table">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Найменування</th>
+                            <th>Колір</th>
+                            <th>Рік випуску</th>
+                            <th>Тип</th>
+                            <th>Стан</th>
+                            <th>Ціна</th>
+                            <th>Характеристика</th>
+                        </tr>
+                        @{
+                            foreach(var car in Model.Cars)
+                            {
+                                <tr>
+                                    <td>
+                                        <input class="custom-radio" asp-for="CarId" value="@car.Id" type="radio" id="car_@car.Id">
+                                        <label for="car_@car.Id"></label>
+                                    </td>
+                                    <td>@car.Name</td>
+                                    <td>@car.Color</td>
+                                    <td>@car.Year</td>
+                                    <td>@car.Type</td>
+                                    <td>@car.State</td>
+                                    <td>@car.Cost</td>
+                                    <td>@car.Desc</td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+                <div class="application__form__submit">
+                    <input asp-route-Id="@Model.Id" type="submit" value="Зберегти">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

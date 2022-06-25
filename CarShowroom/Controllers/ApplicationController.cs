@@ -33,10 +33,17 @@ namespace CarShowroom.Controllers
             return View(viewModel);
         }
 
-        public IActionResult ViewApplication(int appId)
+        async public Task<IActionResult> ViewApplication(int appId)
         {
-            _applications.Get(appId);
-            return View()
+            var application = await _applications.GetStatusModelAsync(appId);
+            return View(application);
+        }
+
+        [HttpPost]
+        public IActionResult ViewApplication(StatusApplicationViewModel model)
+        {
+            _applications.SetStatus(model);
+            return Redirect("~/Admin/Applications");
         }
     }
 }

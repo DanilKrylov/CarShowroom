@@ -1,7 +1,7 @@
 ﻿using CarShowroom.Models;
 using CarShowroom.ViewModels;
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,7 +22,7 @@ namespace CarShowroom.Services
             _db.SaveChanges();
         }
 
-        async public Task<IEnumerable> GetAllCarsAsync()
+        async public Task<IEnumerable<Car>> GetAllCarsAsync()
         {
             var cars = await Task.Run(() => _db.Cars.ToList());
             return cars;
@@ -39,7 +39,7 @@ namespace CarShowroom.Services
             return car;
         }
 
-        async public Task<IEnumerable> GetCarsAsync(CarState carState, Color color, CarType carType, int year, string search, SortParam sortParam)
+        async public Task<IEnumerable<Car>> GetCarsAsync(CarState carState, Color color, CarType carType, int year, string search, SortParam sortParam)
         {
             var cars = await Task.Run(() => _db.Cars.ToList());
 
