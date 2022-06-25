@@ -1,0 +1,69 @@
+﻿@using System.ComponentModel.DataAnnotations
+@model IEnumerable<Car>
+<link rel="stylesheet" href="~/css/admin.css">
+
+<div class="admin">
+    <div class="admin__content">
+        <div class="admin__title"><span>Панель адміністратора</span></div>
+        <div class="admin__content__block">
+            <span>Автомобілі</span>
+            <a href="../Car/AddCar" class="admin__button">Додати автомобіль</a>
+            <a href="" class="admin__button">Перейти на сторінку заявок</a>
+        </div>
+        <div class="admin__container">
+            <table>
+                <tr>
+                    <th>Найменування</th>
+                    <th>Колір</th>
+                    <th>Рік випуску</th>
+                    <th>Тип</th>
+                    <th>Стан</th>
+                    <th>Ціна</th>
+                    <th>Характеристика</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @{
+                    foreach (var car in Model)
+                    {
+                        <tr>
+                            <td>@car.Name</td>
+                            @{
+                                var name = car.Color.ToString();
+                                var type = typeof(DisplayAttribute);
+                                var str = ((DisplayAttribute)car.Color.GetType().GetMember(name)[0].GetCustomAttributes(type, false)[0]).Name;
+
+                                <td>@str</td>
+                            }
+
+
+                            <td>@car.Year</td>
+
+                            @{
+                                name = car.Type.ToString();
+                                type = typeof(DisplayAttribute);
+                                str = ((DisplayAttribute)car.Type.GetType().GetMember(name)[0].GetCustomAttributes(type, false)[0]).Name;
+
+                                <td>@str</td>
+                            }
+
+                            @{
+                                name = car.State.ToString();
+                                type = typeof(DisplayAttribute);
+                                str = ((DisplayAttribute)car.State.GetType().GetMember(name)[0].GetCustomAttributes(type, false)[0]).Name;
+
+                                <td>@str</td>
+                            }
+                            <td>@car.Cost</td>
+                            <td>@car.Desc</td>
+
+
+                            <td><a asp-action="RemoveCar" asp-controller="Car" asp-route-carId="@car.Id">Видалити</a></td>
+                            <td><a asp-action="EditCar" asp-controller="Car" asp-route-carId="@car.Id">Редагувати</a></td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>

@@ -27,7 +27,7 @@
 
                     if (User.IsInRole("admin"))
                     {
-                        <a href="" class="header__menu__item">Панель адміністратора</a>
+                        <a asp-action="Cars" asp-controller="Admin" class="header__menu__item">Панель адміністратора</a>
                     }
                     else{
                         if (User.Identity.IsAuthenticated)

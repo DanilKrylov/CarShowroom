@@ -1,15 +1,36 @@
 ﻿using CarShowroom.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace CarShowroom.ViewModels
 {
     public class UpdateCarViewModel
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Поле не може бути порожнім")]
+        [StringLength(20, MinimumLength = 5, ErrorMessage = "Довжина повинна бути від 5 до 20 символів")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "Поле не може бути порожнім")]
+        [Range(1000, 1000000, ErrorMessage = "Повинно бути від 1.000 до 1.000.000")]
+        public int Cost { get; set; }
+
+        [Required(ErrorMessage = "Поле не може бути порожнім")]
         public Color Color { get; set; }
+
+        [Required(ErrorMessage = "Поле не може бути порожнім")]
+        [Range(1000, 2022, ErrorMessage = "Повинно бути від 1000 до 2022")]
         public int Year { get; set; }
+
+        [Required(ErrorMessage = "Поле не може бути порожнім")]
         public CarType Type { get; set; }
+
+        [Required(ErrorMessage = "Поле не може бути порожнім")]
         public CarState State { get; set; }
+
+
+        [Required(ErrorMessage = "Поле не може бути порожнім")]
+        [StringLength(200, MinimumLength = 10, ErrorMessage = "Довжина повинна бути від 10 до 200 символів")]
         public string Desc { get; set; }
         public Car GetCar()
         {
@@ -21,6 +42,22 @@ namespace CarShowroom.ViewModels
                 Type = Type,
                 State = State,
                 Desc = Desc,
+                Cost = Cost
+            };
+        }
+
+        public static UpdateCarViewModel GetViewModel(Car car)
+        {
+            return new UpdateCarViewModel()
+            {
+                Id = car.Id,
+                Name = car.Name,
+                Color = car.Color,
+                Year = car.Year,
+                Type = car.Type,
+                State = car.State,
+                Desc = car.Desc,
+                Cost = car.Cost
             };
         }
     }

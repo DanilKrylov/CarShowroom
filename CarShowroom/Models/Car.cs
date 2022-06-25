@@ -21,6 +21,7 @@ namespace CarShowroom.Models
             Type = model.Type;
             State = model.State;
             Desc = model.Desc;
+            Cost = model.Cost;
         }
     }
 }

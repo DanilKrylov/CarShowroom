@@ -17,15 +17,7 @@ namespace CarShowroom.Services
 
         async public Task AddCarAsync(AddCarViewModel car)
         {
-            var carmodel = new Car()
-            {
-                Color = car.Color,
-                Desc = car.Desc,
-                Name = car.Name,
-                Year = car.Year,
-                State = car.State,
-                Type = car.Type,
-            };
+            var carmodel = car.GetCar();
             await Task.Run(() => _db.Cars.Add(carmodel));
             _db.SaveChanges();
         }
@@ -92,8 +84,8 @@ namespace CarShowroom.Services
 
         async public Task UpdateCarAsync(UpdateCarViewModel car)
         {
-            var carmodel = await _db.Cars.FindAsync(car.Id);
-            if (car is null)
+            var carmodel = await Task.Run(() =>_db.Cars.FirstOrDefault(c => c.Id == car.Id));
+            if (carmodel is null)
             {
                 throw new Exception();
             }
