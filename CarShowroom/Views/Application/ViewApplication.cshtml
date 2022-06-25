@@ -16,12 +16,12 @@
                 <div class="application__form__item">
                     <span>Статус заявки</span>
                     <select asp-for="State" asp-items='Html.GetEnumSelectList<ApplicationState>()'></select>
-                    <span>Error</span>
+                    <span></span>
                 </div>
                 <div class="application__form__item">
                     <span>Коментар</span>
                     <textarea asp-for="Desc" cols="30" rows="10"></textarea>
-                    <span>Error</span>
+                    <span></span>
                 </div>
                 <div class="application__table">
                     <table>
