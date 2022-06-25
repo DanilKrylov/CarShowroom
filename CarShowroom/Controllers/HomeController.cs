@@ -27,9 +27,9 @@ namespace CarShowroom.Controllers
         }
 
         [HttpPost]
-        async public Task<IActionResult> Index(CarState carState, Color color, CarType carType, int year, string search)
+        async public Task<IActionResult> Index(CarState carState, Color color, CarType carType, int year, string search, SortParam sortParam)
         {
-            var cars = await _cars.GetCarsAsync(carState, color, carType, year, search);
+            var cars = await _cars.GetCarsAsync(carState, color, carType, year, search, sortParam);
             return View(cars);
         }
     }

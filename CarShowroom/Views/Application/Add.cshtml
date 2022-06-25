@@ -1,11 +1,11 @@
-﻿@model RegisterViewModel
-
+﻿@model AddApplicationViewModel
 <link rel="stylesheet" href="~/css/form.css">
+
 <div class="form">
     <div class="form__content">
-        <div class="form__content__header"><span>Реєстрація</span></div>
+        <div class="form__content__header"><span>Оформлення заявки</span></div>
         <div class="form__form">
-            <form method="post" asp-action="Register" asp-controller="Account">
+            <form asp-action="Add" asp-controller="Application" method="post">
                 <div class="form__form__item">
                     <span>Email</span>
                     <input asp-for="Email" type="email">
@@ -17,9 +17,9 @@
                     <span asp-validation-for="Phone"></span>
                 </div>
                 <div class="form__form__item">
-                    <span >Ім'я</span>
+                    <span>Ім'я</span>
                     <input asp-for="Name" type="text">
-                    <span asp-validation-for="Name"></span>
+                    <span></span>
                 </div>
                 <div class="form__form__item">
                     <span>Прізвище</span>
@@ -27,17 +27,22 @@
                     <span asp-validation-for="Surname"></span>
                 </div>
                 <div class="form__form__item">
-                    <span>Пароль</span>
-                    <input asp-for="Password" type="password">
-                    <span asp-validation-for="Password"></span>
+                    <span>Бюджет</span>
+                    <input asp-for="Budget" type="number">
+                    <span asp-validation-for="Budget"></span>
                 </div>
                 <div class="form__form__item">
-                    <span>Повторити пароль</span>
-                    <input asp-for="PasswordConfirm" type="password">
-                    <span asp-validation-for="PasswordConfirm"></span>
+                    <span>Виберіть колір бажаної машини</span>
+                    <select asp-for="Color" asp-items='Html.GetEnumSelectList<Color>()'> </select>
+                    <span asp-validation-for="Color"></span>
                 </div>
                 <div class="form__form__item">
-                    <input type="submit" value="Зареєструватися">
+                    <span>Виберіть тип бажаної машини</span>
+                    <select asp-for="Type" asp-items='Html.GetEnumSelectList<CarType>()'></select>
+                    <span></span>
+                </div>
+                <div class="form__form__item">
+                    <input type="submit" value="Створити">
                 </div>
             </form>
         </div>

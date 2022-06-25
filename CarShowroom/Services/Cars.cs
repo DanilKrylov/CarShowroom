@@ -39,7 +39,7 @@ namespace CarShowroom.Services
             return car;
         }
 
-        async public Task<IEnumerable> GetCarsAsync(CarState carState, Color color, CarType carType, int year, string search)
+        async public Task<IEnumerable> GetCarsAsync(CarState carState, Color color, CarType carType, int year, string search, SortParam sortParam)
         {
             var cars = await Task.Run(() => _db.Cars.ToList());
 
@@ -67,6 +67,13 @@ namespace CarShowroom.Services
             {
                 cars = cars.Where(c => c.Name.ToLower().Contains(search.ToLower())).ToList();
             }
+
+            cars = cars.OrderBy(c => c.Cost).ToList();
+            if (sortParam == SortParam.CostDecreasing)
+            {
+                cars.Reverse();
+            }
+
             return cars;
         }
 

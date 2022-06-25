@@ -23,6 +23,7 @@ namespace CarShowroom
         {
             services.AddScoped<IEmailValidator, EmailValidator>();
             services.AddScoped<ICars, Cars>();
+            services.AddScoped<IApplications, Applications>();
 
             services.AddDbContext<CarShowroomDb>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

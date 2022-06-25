@@ -18,7 +18,7 @@
                 @{
                     if (User.Identity.IsAuthenticated)
                     {
-                        <a asp-action="Logout" asp-controller="Account" class="header__menu__item">Вихід за аккаунта</a>
+                        <a asp-action="Logout" asp-controller="Account" class="header__menu__item">Вихід з акаунта</a>
                     }
                     else{
                         <a asp-action="Register" asp-controller="Account" class="header__menu__item">Реєстрація</a>
@@ -32,7 +32,7 @@
                     else{
                         if (User.Identity.IsAuthenticated)
                         {
-                            <a href="" class="header__menu__item">Подати заявку на авто</a>
+                            <a asp-action="Add" asp-controller="Application" class="header__menu__item">Подати заявку на авто</a>
                         }
                     }
                 }

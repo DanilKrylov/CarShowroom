@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Application>
+<link rel="stylesheet" href="~/css/admin.css">
+
+
+<div class="admin">
+    <div class="admin__content">
+        <div class="admin__title"><span>Панель адміністратора</span></div>
+        <div class="admin__content__block">
+            <span>Заявки</span>
+            <a href="" class="admin__button">Сторінка автомобілів</a>
+        </div>
+        <div class="admin__container">
+            <div class="applications">
+                <div class="applications__content">
+                    @{
+                        foreach (var app in Model)
+                        {
+                            <div class="applications__content__item">
+                                <div class="applications__item__block">
+                                    <p>@app.Name @app.Surname</p>
+                                    <p>Email: @app.Email</p>
+                                    <p>Бюджет: @app.Budget</p>
+                                    <p>Статус: @app.State</p>
+                                </div>
+                                <div class="applications__item__block">
+                                    <a asp-action="ViewApplication" asp-controller="Application" asp-route-appId="@app.Id">
+                                        <span>Передивитися</span>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
