@@ -1,4 +1,5 @@
 ﻿using CarShowroom.Models;
+using CarShowroom.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,22 +14,23 @@ namespace CarShowroom.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserManager<User> _userManager;
-
-        public HomeController(UserManager<User> userManager)
+        private readonly ICars _cars;
+        public HomeController(ICars cars)
         {
-            _userManager = userManager;
+            _cars = cars;
         }
 
-        public IActionResult Index()
+        async public Task<IActionResult> Index()
         {
-            return View();
+            var cars = await _cars.GetAllCarsAsync();
+            return View(cars);
         }
 
-        [Authorize(Roles ="admin")]
-        public string Privacy()
+        [HttpPost]
+        async public Task<IActionResult> Index(CarState carState, Color color, CarType carType, int year, string search)
         {
-            return "ok";
+            var cars = await _cars.GetCarsAsync(carState, color, carType, year, search);
+            return View(cars);
         }
     }
 }

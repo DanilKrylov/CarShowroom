@@ -10,6 +10,8 @@ namespace CarShowroom.Services
         public Task<IEnumerable> GetAllCarsAsync();
         public Task<Car> GetAsync(int id);
         public Task<IEnumerable> GetCarsAsync(CarState carState, Color color, CarType carType, int year, string search);
-        public void AddCar(CarViewModel car);
+        public Task AddCarAsync(AddCarViewModel car);
+        public Task RemoveCarAsync(int carId);
+        public Task UpdateCarAsync(UpdateCarViewModel car);
     }
 }

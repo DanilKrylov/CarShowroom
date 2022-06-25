@@ -2,8 +2,9 @@
 
 namespace CarShowroom.ViewModels
 {
-    public class CarViewModel
+    public class UpdateCarViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public Color Color { get; set; }
         public int Year { get; set; }

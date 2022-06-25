@@ -1,4 +1,5 @@
 ﻿using CarShowroom.Models;
+using CarShowroom.Services;
 using CarShowroom.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +11,13 @@ namespace CarShowroom.Controllers
 {
     public class CarController : Controller
     {
-        [HttpGet("admin")]
+        private readonly ICars _cars;
+        public CarController(ICars cars)
+        {
+            _cars = cars;
+        }
+
+        [HttpGet]
         [Authorize(Roles ="admin")]
         public IActionResult AddCar()
         {
@@ -18,9 +25,15 @@ namespace CarShowroom.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCar(CarViewModel car)
+        [Authorize(Roles = "admin")]
+        async public Task<IActionResult> AddCar(AddCarViewModel car)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                await _cars.AddCarAsync(car);
+                return RedirectToAction("../Admin/Cars");
+            }
+            return View(car);
         }
     }
 }

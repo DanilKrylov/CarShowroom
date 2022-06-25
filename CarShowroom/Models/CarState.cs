@@ -4,7 +4,7 @@ namespace CarShowroom.Models
 {
     public enum CarState
     {
-        [Display(Name = "Будь-яка")]
+        [Display(Name = "Будь-який")]
         Any,
         [Display(Name = "Нова")]
         New,

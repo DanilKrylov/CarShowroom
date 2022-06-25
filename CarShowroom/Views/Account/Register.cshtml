@@ -1,37 +1,45 @@
-﻿@{
-    Layout = null;
-}
+﻿@model RegisterViewModel
 
-@model RegisterViewModel
-<h2>Регистрация нового пользователя</h2>
-<form method="post" asp-controller="Account" asp-action="Register">
-    <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        <label asp-for="Email"></label><br />
-        <input type="email" asp-for="Email" />
-        <span asp-validation-for="Email"></span>
+<link rel="stylesheet" href="~/css/form.css">
+<div class="form">
+    <div class="form__content">
+        <div class="form__content__header"><span>Реєстрація</span></div>
+        <div class="form__form">
+            <form method="post" asp-action="Registr" asp-controller="Account">
+                <div class="form__form__item">
+                    <span>Email</span>
+                    <input asp-for="Email" type="email">
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="form__form__item">
+                    <span>Телефон</span>
+                    <input asp-for="Phone" type="tel">
+                    <span asp-validation-for="Phone"></span>
+                </div>
+                <div class="form__form__item">
+                    <span >Ім'я</span>
+                    <input asp-for="Name" type="text">
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="form__form__item">
+                    <span>Прізвище</span>
+                    <input asp-for="Surname" type="text">
+                    <span asp-validation-for="Surname"></span>
+                </div>
+                <div class="form__form__item">
+                    <span>Пароль</span>
+                    <input asp-for="Password" type="password">
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div class="form__form__item">
+                    <span>Повторити пароль</span>
+                    <input asp-for="PasswordConfirm" type="password">
+                    <span asp-validation-for="PasswordConfirm"></span>
+                </div>
+                <div class="form__form__item">
+                    <input type="submit" value="Зареєструватися">
+                </div>
+            </form>
+        </div>
     </div>
-    <div>
-        <label asp-for="Name"></label><br />
-        <input asp-for="Name" />
-        <span asp-validation-for="Name"></span>
-    </div>
-    <div>
-        <label asp-for="Surname"></label><br />
-        <input asp-for="Surname"/>
-        <span asp-validation-for="Surname"></span>
-    </div>
-    <div>
-        <label asp-for="Password"></label><br />
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <label asp-for="PasswordConfirm"></label><br />
-        <input asp-for="PasswordConfirm" />
-        <span asp-validation-for="PasswordConfirm"></span>
-    </div>
-    <div>
-        <input type="submit" value="Регистрация" />
-    </div>
-</form>
+</div>

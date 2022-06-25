@@ -1,36 +1,52 @@
-﻿@{
-    Layout = null;
-}
+﻿
 
-@model CarViewModel
- 
-<h2>Вход в приложение</h2>
-<form method="post" asp-controller="Car" asp-action="Add">
-    <div>
-        <label asp-for="Name"></label><br />
-        <input asp-for="Name"/>
-        <span asp-validation-for="Name"></span>
+@model AddCarViewModel
+
+
+<link rel="stylesheet" href="~/css/form.css">
+<div class="form">
+    <div class="form__content">
+        <div class="form__content__header"><span>Додавання автомобіля</span></div>
+        <div class="form__form">
+            <form method="post">
+                <div class="form__form__item">
+                    <span>Введіть найменування</span>
+                    <input asp-for="Name" type="text">
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="form__form__item">
+                    <span>Введіть ціну автомобіля</span>
+                    <input required asp-for="Cost" type="number">
+                    <span asp-validation-for="Cost"></span>
+                </div>
+                <div class="form__form__item">
+                    <span>Введіть рік випуску автомобіля</span>
+                    <input required asp-for="Year" type="number">
+                    <span asp-validation-for="Year"></span>
+                </div>
+                <div class="form__form__item">
+                    <span>Виберіть колір автомобіля</span>
+                    <select asp-for="Color" asp-items='Html.GetEnumSelectList<Color>().Where(c => c.Text != "Будь-який")'></select>
+                    <span asp-validation-for="Color"></span>
+                </div>
+                <div class="form__form__item">
+                    <span>Виберіть тип автомобіля</span>
+                    <select asp-for="Type" asp-items='Html.GetEnumSelectList<CarType>().Where(c => c.Text != "Будь-який")'></select>
+                    <span asp-validation-for="Type"></span>
+                </div>
+                <div class="form__form__item">
+                    <span>Виберіть стан автомобіля</span>
+                    <select asp-for="State" asp-items='Html.GetEnumSelectList<CarState>().Where(c => c.Text != "Будь-який")'></select>
+                    <span asp-validation-for="State"></span>
+                </div>
+                <div class="form__form__item">
+                    <textarea asp-for="Desc" type="text" cols="30" rows="10"></textarea>
+                    <span asp-validation-for="Desc"></span>
+                </div>
+                <div class="form__form__item">
+                    <input type="submit" value="Створити">
+                </div>
+            </form>
+        </div>
     </div>
-    <div>
-        <label asp-for="Year"></label><br />
-        <input asp-for="Year"/>
-        <span asp-validation-for="Year"></span>
-    </div>
-    <div>
-        <label asp-for="Color"></label><br />
-        <select asp-for="Color" asp-items='Html.GetEnumSelectList<Color>().Where(c => c.Text != "Будь-який")'></select>
-    </div>
-    <div>
-        <label asp-for="Name"></label><br />
-        <input asp-for="Name"/>
-        <span asp-validation-for="Name"></span>
-    </div>
-    <div>
-        <label asp-for="Name"></label><br />
-        <input asp-for="Name"/>
-        <span asp-validation-for="Name"></span>
-    </div>
-    <div>
-        <input type="submit" value="Войти" />
-    </div>
-</form>
+</div>

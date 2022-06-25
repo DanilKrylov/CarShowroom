@@ -1,21 +1,91 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using System.ComponentModel.DataAnnotations
+@model IEnumerable<Car>
+<link rel="stylesheet" href="css/index.css">
 
-@{
-    var user = ViewBag.User;
-}
- 
-@if(User.Identity.IsAuthenticated)
-{
-    <p>@User.Identity.Name</p>
- 
-    <form method="post" asp-controller="Account" asp-action="Logout">
-        <input type="submit" value="Выход" />
-    </form>
-}
-else
-{
-    <a asp-controller="Account" asp-action="Login">Вход</a>
-    <a asp-controller="Account" asp-action="Register">Регистрация</a>
-}
+<div class="index">
+    <div class="index__content">
+        <div class="search">
+            <div class="search__content">
+                <form asp-action="Index" asp-controller="Home" method="post">
+                    <div class="search__content__title">Пошук</div>
+                    <div class="search__content__item">
+                        <div class="search__item__block">
+                            <input name="search" type="search">
+                        </div>
+                        <div class="search__item__block">
+                            <select name="" id="">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="search__content__item">
+                        <div class="search__item__block">
+                            <select name="carState" asp-items='Html.GetEnumSelectList<CarState>()'></select>
+                        </div>
+                        <div class="search__item__block">
+                            <select name="Color" asp-items='Html.GetEnumSelectList<Color>()'></select>
+                        </div>
+                    </div>
+                    <div class="search__content__item">
+                        <div class="search__item__block">
+                            <select name="CarType" asp-items='Html.GetEnumSelectList<CarType>()'></select>
+                        </div>
+                        <div class="search__item__block">
+                            <input type="submit" class="search__submit" value="Пошук">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="table">
+            <div class="table__content">
+                <table>
+                    <tr>
+                        <th>Найменування</th>
+                        <th>Колір</th>
+                        <th>Рік випуску</th>
+                        <th>Тип</th>
+                        <th>Стан</th>
+                        <th>Ціна</th>
+                        <th>Характеристика</th>
+                    </tr>
+                    @{
+                        foreach(var car in Model)
+                        {
+                            <tr>
+                                <td>@car.Name</td>
+                                @{
+                                    var name = car.Color.ToString();
+                                    var type = typeof(DisplayAttribute);
+                                    var str = ((DisplayAttribute)car.Color.GetType().GetMember(name)[0].GetCustomAttributes(type, false)[0]).Name;
+
+                                    <td>@str</td>
+                                }
+
+                                
+                                <td>@car.Year</td>
+
+                                @{
+                                    name = car.Type.ToString();
+                                    type = typeof(DisplayAttribute);
+                                    str = ((DisplayAttribute)car.Type.GetType().GetMember(name)[0].GetCustomAttributes(type, false)[0]).Name;
+
+                                    <td>@str</td>
+                                }
+
+                                @{
+                                    name = car.State.ToString();
+                                    type = typeof(DisplayAttribute);
+                                    str = ((DisplayAttribute)car.State.GetType().GetMember(name)[0].GetCustomAttributes(type, false)[0]).Name;
+
+                                    <td>@str</td>
+                                }
+                                <td>@car.Cost</td>
+                                <td>@car.Desc</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

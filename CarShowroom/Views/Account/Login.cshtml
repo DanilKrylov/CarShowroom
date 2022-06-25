@@ -1,18 +1,25 @@
 ﻿@model LoginViewModel
- 
-<h2>Вход в приложение</h2>
-<form method="post" asp-controller="Account" asp-action="Login">
-    <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        <label asp-for="Email"></label><br />
-        <input asp-for="Email" />
+
+<link rel="stylesheet" href="~/css/form.css">
+<div class="form">
+    <div class="form__content">
+        <div class="form__content__header"><span>Вхід</span></div>
+        <div class="form__form">
+            <form method="post" asp-controller="Account" asp-action="Login">
+                <div class="form__form__item">
+                    <span>Email</span>
+                    <input asp-for="Email" type="email">
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="form__form__item">
+                    <span>Пароль</span>
+                    <input asp-for=Password type="password">
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div class="form__form__item">
+                    <input type="submit" value="Увійти">
+                </div>
+            </form>
+        </div>
     </div>
-    <div>
-        <label asp-for="Password"></label><br />
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <input type="submit" value="Войти" />
-    </div>
-</form>
+</div>

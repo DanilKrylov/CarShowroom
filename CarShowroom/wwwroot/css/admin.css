@@ -1,0 +1,89 @@
+.admin {
+}
+.admin__content {
+    max-width: 1290px;
+    margin: 0 auto;
+}
+.admin__title {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+}
+.admin__content__block {
+    margin: 20px 0;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.admin__button {
+    padding: 10px 50px;
+    background: var(--black-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.admin__button:hover{
+    opacity: 0.7;
+}
+
+.admin__container {
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table tr th,
+table tr td {
+    padding: 10px 20px;
+    border: 1px solid var(--black-color);
+}
+
+table tr td a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--black-color);
+    width: 100%;
+    height: 100%;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+table tr td a:hover{
+    opacity: 0.7;
+}
+
+.applications {
+}
+.applications__content {
+}
+.applications__content__item {
+    width: 100%;
+    padding: 20px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.applications__item__block{
+}
+.applications__item__block p{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.applications__item__block a{
+    padding: 10px 30px;
+    background: var(--black-color);
+    color: white;
+    font-size: 16px;
+}
+.applications__item__block a:hover{
+    opacity: 0.7;
+}
