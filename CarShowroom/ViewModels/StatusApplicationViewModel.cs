@@ -12,13 +12,13 @@ namespace CarShowroom.ViewModels
         public string Phone { get; set; }
         public string Email { get; set; }
         public string UserAccountEmail { get; set; }
-        [Required(ErrorMessage = "Поле не може бути порожнім")]
         public int CarId { get; set; }
         public Color Color { get; set; }
         public CarType Type { get; set; }
         public int Budget { get; set; }
         public List<Car> Cars { get; set; }
         public ApplicationState State { get; set; }
+        [Required(ErrorMessage ="Не може бути порожнім")]
         public string Desc { get; set; }
     }
 }

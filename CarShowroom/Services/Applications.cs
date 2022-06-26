@@ -51,7 +51,7 @@ namespace CarShowroom.Services
         async public Task<StatusApplicationViewModel> GetStatusModelAsync(int appId)
         {
             var app = await Task.Run(() => _db.Applications.FirstOrDefault(c => c.Id == appId));
-            IEnumerable<Car> cars = await _cars.GetCarsAsync(CarState.Any, app.Color, app.Type, 0, "", SortParam.CostIncreasing);
+            IEnumerable<Car> cars = await _cars.GetCarsAsync(CarState.Any, app.Color, app.Type, 0, "",app.Budget, SortParam.CostIncreasing);
             return new StatusApplicationViewModel()
             {
                 Id = app.Id,

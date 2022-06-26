@@ -39,7 +39,7 @@ namespace CarShowroom.Services
             return car;
         }
 
-        async public Task<IEnumerable<Car>> GetCarsAsync(CarState carState, Color color, CarType carType, int year, string search, SortParam sortParam)
+        async public Task<IEnumerable<Car>> GetCarsAsync(CarState carState, Color color, CarType carType, int year, string search,int budget, SortParam sortParam)
         {
             var cars = await Task.Run(() => _db.Cars.ToList());
 
@@ -61,6 +61,11 @@ namespace CarShowroom.Services
             if(year > 0)
             {
                 cars = cars.Where(c => c.Year == year).ToList();
+            }
+
+            if(budget > 0)
+            {
+                cars = cars.Where(c => c.Cost <= budget).ToList();
             }
 
             if (search is not null)

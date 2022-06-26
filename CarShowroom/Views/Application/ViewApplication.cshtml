@@ -21,6 +21,7 @@
                 <div class="application__form__item">
                     <span>Коментар</span>
                     <textarea asp-for="Desc" cols="30" rows="10"></textarea>
+                    <span asp-validation-for="Desc"></span>
                     <span></span>
                 </div>
                 <div class="application__table">
@@ -54,9 +55,10 @@
                             }
                         }
                     </table>
+                    <span asp-validation-for="CarId"></span>
                 </div>
                 <div class="application__form__submit">
-                    <input asp-route-Id="@Model.Id" type="submit" value="Зберегти">
+                    <input id="onetime" asp-route-Id="@Model.Id" type="submit" value="Зберегти">
                 </div>
             </form>
         </div>
